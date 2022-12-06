@@ -39,5 +39,5 @@ function operate(num1, operator, num2) {
         default:
             console.log('operate() switch statement error');
     }
-    return result;
+    return Math.round(result * 100) / 100;
 }

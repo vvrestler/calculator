@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.base {
+    display: flex;
+    flex-flow: column wrap;
+    width: 300px;
+    height: 400px;
+    background-color: grey;
+}
+#display {
+    background-color: lightblue;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100px;
+    margin: 10px;
+    font-size: 24px;
+}
+#all-buttons {
+    display: flex;
+    flex: 1;   
+}
+#all-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.number {
+    width: 50px;
+    height: 50px;
+}
+#operators {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.operator {
+    width: 50px;
+    height: 30px;
+}
+
+* {
+    border: 1px solid black;
+    margin: 0;
+}
