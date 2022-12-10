@@ -86,11 +86,11 @@ for (button of operatorButtons) {
         if (operator != "" && displayValue != "") {
             displayValue = operate(numToUse, operator, displayValue);
             populateDisplay();
-        } else if (displayValue != "") {
+        }
+        if (displayValue != "") {
             numToUse = displayValue;
             displayValue = "";
         }
         operator = e.target.innerText;
-        
     })
 };
