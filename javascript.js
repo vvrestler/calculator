@@ -29,13 +29,18 @@ function operate(num1, operator, num2) {
             result = multiply(num1, num2);
             break;
         case '/':
-            result = divide(num1, num2);
+            if(num2 == "0") {
+                snarkyMessage = true;
+            } else {
+                result = divide(num1, num2);
+            }
             break;
         default:
             console.log('operate() switch statement error');
     }
     return Math.round(result * 100) / 100;
 };
+var snarkyMessage;
 
 let numToUse = "";
 
@@ -43,6 +48,9 @@ let displayValue = "";
 const display = document.getElementById('display');
 function populateDisplay () {
     display.textContent = displayValue;
+    if(snarkyMessage) {
+        display.textContent = "You can't do that!";
+    }
 };
 
 const clearKey = document.getElementById('clear');
@@ -51,11 +59,12 @@ clearKey.addEventListener('click', () => {
     numToUse = "";
     display.textContent = "";
     operator = "";
+    snarkyMessage = "";
 });
 
 const equalsKey = document.getElementById('equals');
 equalsKey.addEventListener('click', () => {
-    if(operator != "") {  //to avoid calculating without an operator
+    if(operator != "") {  //to avoid calculating without an operator or with only one number
         displayValue = operate(numToUse, operator, displayValue);
         populateDisplay();
         operator = "";
@@ -74,12 +83,14 @@ for (button of numButtons) {
 const operatorButtons = document.querySelectorAll('.operator');
 for (button of operatorButtons) {
     button.addEventListener('click', function(e) {
-        if (operator != "") {
+        if (operator != "" && displayValue != "") {
             displayValue = operate(numToUse, operator, displayValue);
             populateDisplay();
+        } else if (displayValue != "") {
+            numToUse = displayValue;
+            displayValue = "";
         }
         operator = e.target.innerText;
-        numToUse = displayValue;
-        displayValue = "";
+        
     })
-}
+};
